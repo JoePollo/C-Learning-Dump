@@ -1,0 +1,68 @@
+using System;
+
+namespace CSharperooTest
+{
+    internal class Program
+    {
+
+        private static void Main(string[] args)
+        {
+            Random rnd = new Random();
+            int num01 = rnd.Next(1, 10); // Generates first number
+            int num02 = rnd.Next(1, 10); // Generates second number
+            int correctAnswer = num01 * num02; // Multiplies randomly generated numbers (wanting to change to random operation rather than multiplication). Subsequently stores the correct answer for TRUE/FALSE checking
+            int answerCount = 1; // Container for the numerical answer count
+            string newAnswer = ""; // String container for the console to read and place user input (can likely condense answer variables to a single variable instead of using 2)
+
+            Console.Write("Solve the equation: " + num01 + "*" + num02 + "= "); // Console asks generated math question
+            string answer = Console.ReadLine(); // User Input
+            answerCount++; // Incrementing ask count
+            if (Convert.ToInt32(answer) != correctAnswer) // Checking if the answer is correct
+            {
+                do // DO WHILE loop to say IF true, run this loop. If false, skip the loop.
+                {
+                    Console.Write("Incorrect answer, try again. "); // Console asking for a new answer
+                    newAnswer = Console.ReadLine(); // Registration of new answer
+                    answerCount++; // Incrementing user input
+                    if ((Convert.ToInt32(newAnswer) == correctAnswer)) // Checking if new user input is correct. Probable to break loop more cleanly than using an IF BREAK
+                    {
+                        break; // Breaks loop if answer is correct
+                    }
+                    if (answerCount <= 5) // Check if user is lower than or exceeding answer count limit
+                    {
+                        if (answerCount == 5) // Check if user is at limit
+                        {
+                            Console.Write("You have one last attempt. "); // Console warning the user if answer count is at limit
+                            newAnswer = Console.ReadLine(); // Console reading user input
+                            answerCount++; // Incrementing user input
+                            if ((Convert.ToInt32(newAnswer) == correctAnswer)) // Checking if new user input is correct. Probable to break loop more cleanly than using an IF BREAK
+                            {
+                                break; // Breaks loop if answer is correct
+                            }
+                        }
+                        else // If answer count is less than or at 5, check if answer count is at 5, if not, run this code.
+                        {
+                            Console.Write("Incorrect, try again. "); // Console requests another input
+                            newAnswer = Console.ReadLine(); // Console reads user input
+                            answerCount++; // Increment user input
+                            if ((Convert.ToInt32(newAnswer) == correctAnswer)) // Checking if answer is correct, if TRUE then break
+                            {
+                                break; // BReaks loop if answer is correct
+                            }
+                        }
+                    }
+                } while ((Convert.ToInt32(newAnswer) != correctAnswer) && answerCount <= 5); // Backend of DO WHILE looping stating to continue loop if 1. answer is incorrect and 2. answer count is at or less than limit
+            }
+            if (answerCount > 5 && Convert.ToInt32(newAnswer) != correctAnswer) // If answer is incorrect and answer count exceeds limit, terminate program
+            {
+                Console.WriteLine("You have failed this question."); // If answers are incorrect and exceeding limit, return this code
+            } else
+            {
+                Console.WriteLine("Congratulations! You have passed this question."); // Else if answer is correct and not exceeding limit, return this code
+            }
+            
+         
+
+        }
+    }
+}

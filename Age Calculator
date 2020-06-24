@@ -1,0 +1,40 @@
+using System;
+
+namespace CSharperooTest
+{
+    internal class Program
+    {
+
+        private static void Main(string[] args)
+        {
+            int yearAge = 0; // Sets variable to allow DO WHILE loop criteria
+            do
+            {
+                try // Outlines code to "try" to execute and watches for errors
+                {
+                    Console.Write("What year were you born? "); // Console requests user input for year of birth
+                    int yearBorn = Convert.ToInt32(Console.ReadLine()); // Console builds a variable using user input for year of birth
+                    if (yearBorn <= 0) // Checking if year of birth is less than 0, disallowing negative values
+                    {
+                        Console.WriteLine("Invalid input."); // If user input is less than 0, console states input is invalid
+                        continue; // If user input is less than 0, restart the DO WHILE loop
+                    }
+                    Console.Write("What year is it? "); // If user input for first question is valid, console asks for another user input for the current year
+                    int yearCurrent = Convert.ToInt32(Console.ReadLine()); // Console reads user input and stores it in a variable
+                    if (yearCurrent <= 0 || yearCurrent - yearBorn <= 0) // Checking if user input is greater than 0, as age cannot be 0. Checking if both variables from user input is greater than 0, as age cannot be 0 or negative.
+                    {
+                        Console.WriteLine("Invalid Input."); // If second user input is less than or equal to 0, state invalid input. If first and second user input equate to 0 or less than 0, state invalid input.
+                        continue; // Restart loop due to invalid inputs.
+                    }
+                    yearAge = yearCurrent - yearBorn; // Build new variable by subtracting second input from first input, as first input must be less than second input. 
+                    Console.WriteLine("You are approximately " + yearAge + " years old."); // Use new variable to approximate user's age from provided input.
+                }
+                catch (FormatException) // Checks if provided exception (FormatException) occurs within the TRY brackets.
+                {
+                    Console.WriteLine("Invalid Input."); // States input is invalid if FormatException occurs
+                    continue; // Restarts DO WHILE loop if FormatException occurs
+                }
+            } while (yearAge <= 0); // Provides criteria for DO WHILE loop to run using pre-built variable
+        }
+    }
+}

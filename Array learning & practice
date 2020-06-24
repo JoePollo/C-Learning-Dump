@@ -1,0 +1,20 @@
+namespace CSharperooTest
+{
+    internal class Program
+    {
+
+        private static void Main(string[] args)
+        {
+            Random rnd = new Random(); // Builds random number generator
+            int num01 = rnd.Next(0, 4); // Stores a random number in a variable
+            int num02 = rnd.Next(0, 2); // Stores another random number in a variable
+            int[,] numberGrid = { // Lays out a grid array using rows and columns. 3 rows, 2 columns. Variable num01 is for rows, variable num02 is for columns.
+                {1,2},
+                {3,4 },
+                {5,6 }
+            };
+            Console.WriteLine("Row value is " + num01 + ". Column value is " + num02 + "."); // Console writes out what the row and column values are
+            Console.WriteLine("Array value is " + numberGrid[num01, num02] + "."); // Console pulls the value from the grid using the row and column values
+        }
+    }
+}
